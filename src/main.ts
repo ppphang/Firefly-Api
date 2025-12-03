@@ -11,6 +11,8 @@ async function bootstrap() {
     .setVersion('1.0.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
+  // 设置 Swagger 文档的访问路径为 /docs
+  //docs-json 和 docs-yaml 可以访问到原始的 OpenAPI 文档
   SwaggerModule.setup('docs', app, document);
   //测试输出环境变量
   const cfg = app.get(ConfigService);
@@ -24,6 +26,7 @@ async function bootstrap() {
       name: cfg.get<string>('database.name'),
     },
     redis: {
+      enabled: cfg.get<boolean>('redis.enabled'),
       host: cfg.get<string>('redis.host'),
       port: cfg.get<number>('redis.port'),
     },

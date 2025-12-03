@@ -9,6 +9,7 @@ const envSchema = z.object({
   DB_PASS: z.string().default(''),
   DB_NAME: z.string().default('test'),
 
+  REDIS_ENABLED: z.coerce.boolean().default(false),
   REDIS_HOST: z.string().default('127.0.0.1'),
   REDIS_PORT: z.coerce.number().default(6379),
   REDIS_PASS: z.string().optional().default(''),
@@ -35,6 +36,7 @@ export const configuration = () => {
       name: env.DB_NAME,
     },
     redis: {
+      enabled: env.REDIS_ENABLED,
       host: env.REDIS_HOST,
       port: env.REDIS_PORT,
       password: env.REDIS_PASS || undefined,

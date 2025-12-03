@@ -9,6 +9,7 @@ const rawEnvSchema = z.object({
   DB_PASS: z.string().default(''),
   DB_NAME: z.string().default('test'),
 
+  REDIS_ENABLED: z.coerce.boolean().default(false),
   REDIS_HOST: z.string().default('127.0.0.1'),
   REDIS_PORT: z.coerce.number().default(6379),
   REDIS_PASS: z.string().optional().default(''),
